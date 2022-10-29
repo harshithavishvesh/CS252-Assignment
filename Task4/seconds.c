@@ -11,9 +11,6 @@
 
 unsigned long start_jiffies = 0;
 
-/**
- * Function prototypes
- */
 static ssize_t proc_read(struct file *file, char *buf, size_t count, loff_t *pos);
 
 static struct proc_ops my_procop= {
