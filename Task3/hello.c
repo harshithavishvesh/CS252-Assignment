@@ -7,14 +7,14 @@
 #define BUFFER_SIZE 128
 #define PROC_NAME "hello"
 
-static ssize_t proc_read(struct file *file, char *buf, size_t count, loff_t *pos);
+ssize_t proc_read(struct file *file, char *buf, size_t count, loff_t *pos);
 
 static struct proc_ops my_procop= {
     .proc_read = proc_read,
 };
 
 /* This function is called when the module is loaded. */
-static int proc_init(void)
+int proc_init(void)
 {
     // creates the /proc/hello entry
     proc_create(PROC_NAME, 0666, NULL, &my_procop);
@@ -22,14 +22,14 @@ static int proc_init(void)
 }
 
 /* This function is called when the module is removed. */
-static void proc_exit(void)
+void proc_exit(void)
 {
     // removes the /proc/hello entry
     remove_proc_entry(PROC_NAME, NULL);
 }
 
 /*This function is called each time the /proc/hello is read. */
-static ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, loff_t *pos)
+ssize_t proc_read(struct file *file, char __user *usr_buf, size_t count, loff_t *pos)
 {
     char buffer[BUFFER_SIZE];
     int rv = 0;
