@@ -21,7 +21,7 @@ static struct proc_ops my_procop= {
 static int proc_init(void)
 {
     // creates the /proc/seconds entry
-    proc_create(PROC_NAME, 0, NULL, &my_procop);
+    proc_create(PROC_NAME, 0666, NULL, &my_procop);
     start_jiffies = jiffies;
     return 0;
 }
