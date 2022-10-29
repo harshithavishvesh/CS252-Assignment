@@ -8,9 +8,6 @@
 #define BUFFER_SIZE 128
 #define PROC_NAME "jiffies"
 
-/**
- * Function prototypes
- */
 static ssize_t proc_read(struct file *file, char *buf, size_t count, loff_t *pos);
 
 static struct proc_ops my_procop= {
@@ -53,6 +50,5 @@ module_init(proc_init);
 module_exit(proc_exit);
 
 MODULE_LICENSE("NITK");
-MODULE_DESCRIPTION(
-    "Report the current value of jiffies when the /proc/jiffies file is read.");
+MODULE_DESCRIPTION("Report the current value of jiffies when the /proc/jiffies file is read.");
 MODULE_AUTHOR("Harshitha Vishvesh");
